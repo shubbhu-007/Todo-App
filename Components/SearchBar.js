@@ -1,26 +1,24 @@
 import { useState } from "react";
-const SearchBar = ({ state, setstate }) => {
-    const [todo, setTodo] = useState("");
-    const userInput = (e) => {
-        setTodo(e.target.value)
-    }
+const SearchBar = ({ state, setstate,todo,setTodo }) => {
+    
     return (
         <div className="search_bar">
-            <input type='text' placeholder="Save Your Plan....." onChange={userInput} />
+            <input type='text' placeholder="Save Your Plan....." onChange={(e) => setTodo(e.target.value)} value={todo}/>
             <button type="submit"
                 onClick={
                     () => {
-                        if (todo.trim !== '') {
+                        if (todo.trim() !== '') {
                             setstate([
                                 ...state,
-                                { id: Date.now(), text: todo }
+                                { id: Date.now(), text: todo , }
                             ])
-                            setTodo('')
+                            setTodo('');
+
                         }
                     }
                 }
             >
-                Add</button>
+                <i className="fa-solid fa-plus"></i></button>
         </div>
 
     )

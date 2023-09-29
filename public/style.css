@@ -75,6 +75,7 @@ button{
     
     margin-top:2rem;
 }
+
 .todo_items{
     width: 700px;
     gap:10rem;
@@ -84,6 +85,14 @@ button{
     border-radius:10px;
     margin-bottom: 1rem;
     position: relative;
+    
+}
+
+.todo_edit_items input{
+    border: none;
+    width:60%;
+    /* height: 40px; */
+    outline: none;
     
 }
 
@@ -98,4 +107,7 @@ button{
     align-items: center;
     gap:2rem;
     /* margin-bottom: -1rem; */
+}
+.icon_edit_items{
+    margin-right: 10px;
 }
