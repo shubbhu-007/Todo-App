@@ -1,26 +1,43 @@
 import SearchBar from "./SearchBar";
 import TodoItems from "./TodoItems";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 const TodoContainer = () => {
     const [todolist, setTodoList] = useState([]);
-    const [todo, setTodo] = useState("");
-    const [editableItem, setEditableItem] = useState(null);
-    const [editText, seteditText] = useState(todo);
-   
-   
+
+    //* handling Delete Todo 
     const handledeleteTodo = (id) => {
         const updatedTodoList = todolist.filter((item) => item.id != id);
         setTodoList(updatedTodoList);
     }
 
-    const handleEditTodo = (id, newText) => {
-        console.log(id,newText);
+    //* handling check box on todo completion
+    const handleCheckBox = (id) => {
+        console.log(id);
+        const completedItem = todolist.find((item) => item.id === id);
+        console.log(completedItem.isCompleted);
 
-        const updatedTodo = todolist.map((todo) => todo.id === id ? {...todo, text: newText, } : todo);
-        setTodoList(updatedTodo);
-        setEditableItem(null);
-        // seteditText("");
+        if (completedItem) {
+            const updatedTodo = todolist.map((item) => item.id === id ? { ...item, isCompleted: !item.isCompleted } : item);
+
+            setTodoList(updatedTodo);
+        }
+
     }
+
+    useEffect(() => {
+
+        const storedTodoList = JSON.parse(localStorage.getItem("todolist"));
+        if (storedTodoList) {
+            setTodoList(storedTodoList);
+        }
+    }, [])
+
+    // save todo item to local storage whenver the todolist state changes
+    useEffect(() => {
+
+        localStorage.setItem("todolist", JSON.stringify(todolist));
+    }, [todolist])
+
 
 
     return (
@@ -28,21 +45,18 @@ const TodoContainer = () => {
             <div className="todo_list_heading">
                 <h2>What's Your Plan For Today?</h2>
             </div>
+
             <SearchBar
                 state={todolist}
                 setstate={setTodoList}
-                todo={todo}
-                setTodo={setTodo}
+
             />
 
             <TodoItems
                 todolist={todolist}
                 deleteTodo={handledeleteTodo}
-                editableTodo={editableItem}
-                setEditableTodo={setEditableItem}
-                saveTodo={handleEditTodo}
-                editText={editText}
-                seteditText={seteditText}
+                handleCheckBox={handleCheckBox}
+                setTodoList={setTodoList}
             />
 
         </div>

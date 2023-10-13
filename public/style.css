@@ -18,7 +18,7 @@ header{
     align-items: center;
 }
 header h1{
-    padding: 20px;
+    padding: 30px;
     text-align: center;
     text-shadow: 1px 1px 2px #434343;
     letter-spacing: 3px;
@@ -37,15 +37,17 @@ span{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 2rem;
+    margin-top: 3rem;
     gap:2rem;
 }
 h2{
     text-align: center;
     letter-spacing: 3px;
     text-shadow: 1px 1px 1px #434343;
+    margin-bottom: 1rem;
 }
 .search_bar{
+    margin-left: 5rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -54,21 +56,27 @@ h2{
 .search_bar input{
     border: none;
     outline: none;
-    width:450px;
+    width:600px;
     padding: 1rem;
     border-radius: 2rem;
     border: 1px solid #f95959 ;
+    box-shadow: 1px 1px 2px;
+    font-size: 1.2rem;
 }
 button{
     border:none;
     outline: none;
-    border-radius:50%;
-    width:50px;
-    height: 50px;
+    border-radius:50% ;
+    width:55px;
+    height: 55px;
     padding:10px;
     background-color: #f95959;
     cursor: pointer;
     box-shadow: 1px 1px 2px #3b3b3b ;
+
+}
+button:hover{
+    filter: brightness(120%);
 }
 
 .todo_items_container{
@@ -77,8 +85,9 @@ button{
 }
 
 .todo_items{
-    width: 700px;
-    gap:10rem;
+    width: 600px;
+    display: flex;
+    gap:1rem;
     padding: 2rem;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
     border: 1px solid black;
@@ -110,4 +119,60 @@ button{
 }
 .icon_edit_items{
     margin-right: 10px;
+}
+.completed-text{
+    text-decoration: line-through;
+    color: #888;
+}
+
+@media screen and (max-width:780px){
+    .search_bar{
+        margin-left: 1rem;
+        flex-direction: column;
+        
+    }
+    .search_bar input{
+        width:500px;
+    }
+    .todo_items_container{
+        margin-top:0;
+    }
+    .todo_items{
+        width: 500px;
+
+    }
+    .search_bar{
+        gap:1.3rem;
+    }
+
+}
+
+@media screen and (max-width:520px){
+    h2{
+        margin-inline: 0.2rem;
+    }
+    .search_bar input{
+        width:350px;
+    }
+    .search_bar{
+        margin-inline: 0.4rem;
+    }
+    .todo_items{
+        width:350px;
+    }
+
+
+}
+@media screen and (max-width:360px){
+    .search_bar input{
+        width:270px;
+    }
+    .search_bar{
+        margin-inline: 0.1rem;
+    }
+    .todo_items{
+        width:270px;
+    }
+
+
 }
